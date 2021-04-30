@@ -1,0 +1,16 @@
+%td
+  = member.name
+%td
+  = member.email
+%td
+  = member.phone_number
+%td
+  = member.joining_date
+%td
+  = round_value(member.members_avg_score)
+%td
+  = link_to member_path(member) do
+    %i.fa.fa-eye
+  |
+  = link_to edit_member_path(member) do
+    %i.fa.fa-edit

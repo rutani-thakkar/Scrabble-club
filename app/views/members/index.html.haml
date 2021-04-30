@@ -1,0 +1,15 @@
+%table.table
+  %thead.thead-dark
+    %tr
+      %th Name
+      %th Email
+      %th Phone Number
+      %th Joining Date
+      %th Average Score
+      %th Action
+  %tbody
+    - @members.each do |member|
+      %tr
+        = render 'member', member: member
+
+= link_to 'Add member', new_member_path, class: 'btn btn-warning'

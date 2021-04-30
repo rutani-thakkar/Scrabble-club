@@ -1,0 +1,27 @@
+.mb-5
+  = link_to 'Back', members_path, class: 'btn btn-warning'
+.row
+  .col-sm-12
+    .card
+      .card-body
+        %h4 
+          .card-title
+            = 'Add Member'
+
+        = form_with model: @member do |form|
+          .form-group.m-t-40.row
+            = form.label :name, 'Name:'
+            = form.text_field :name, class:'form-control'
+
+          .form-group.m-t-40.row
+            = form.label :email, 'Email:'
+            = form.text_field :email, class:'form-control'
+          
+          .form-group.m-t-40.row
+            = form.label :phone_number, 'Phone Number:'
+            = form.text_field :phone_number, class:'form-control'
+
+          .form-group.m-t-40.row
+            .col-md-12
+              .text-center
+                = form.submit class: 'btn btn-success'

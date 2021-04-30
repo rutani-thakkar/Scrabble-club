@@ -1,0 +1,59 @@
+%h1 
+  = "#{@member.name} Details"
+
+.row
+  .font-weight-bold.col-sm-3
+    Client Name:
+  .col-sm-9
+    = @member.name
+
+.row
+  .font-weight-bold.col-sm-3
+    Email:
+  .col-sm-9
+    = @member.email
+
+.row
+  .font-weight-bold.col-sm-3
+    Contact Address:
+  .col-sm-9
+    = @member.phone_number
+.row
+  .font-weight-bold.col-sm-3
+    Joining Date:
+  .col-sm-9
+    = @member.joining_date
+
+.row
+  .font-weight-bold.col-sm-3
+    Total Win Matches:
+  .col-sm-9
+    = @win_matches
+
+.row
+  .font-weight-bold.col-sm-3
+    Total Lost Matches:
+  .col-sm-9
+    = @lose_matches
+
+.row
+  .font-weight-bold.col-sm-3
+    Average Score:
+  .col-sm-9
+    = round_value(@average_score)
+
+.row
+  - if @partner
+    .font-weight-bold.col-sm-3
+      Highest Score:
+    .col-sm-9
+      = "#{@highest_score} against"
+      = link_to member_name(@partner), member_path(@partner.member)
+      = "At #{game_place(@partner)} On #{event_date(@partner)}" 
+  - else
+    .font-weight-bold.col-sm-3
+      Highest Score:
+    .col-sm-9
+      = @highest_score
+= link_to 'Back', members_path, class: 'btn btn-warning'
+= link_to 'Add member', new_member_path, class: 'btn btn-success'
