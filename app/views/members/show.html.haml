@@ -55,5 +55,6 @@
       Highest Score:
     .col-sm-9
       = @highest_score
+.modal
 = link_to 'Back', members_path, class: 'btn btn-warning'
-= link_to 'Add member', new_member_path, class: 'btn btn-success'
+= link_to 'Add member', new_member_path, remote: true, class: 'btn btn-success'

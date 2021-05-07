@@ -3,7 +3,7 @@ class MembersController < ApplicationController
 		
   def index
     # 10 members records who played minimum 5 matches
-    @members = Member.joins(:game_members).select('members.*, AVG(game_members.score) AS members_avg_score').group("members.id").having("count(game_members.id) >= ?",5).order('members_avg_score DESC').limit(10)
+    @members = get_members
   end
 
   def new
@@ -41,7 +41,15 @@ class MembersController < ApplicationController
     end
   end
 
+  def search
+    # members = Member.joins(:game_members).select('members.*, AVG(game_members.score) AS members_avg_score').group("members.id").having("count(game_members.id) >= ?",5).order('members_avg_score DESC').limit(10)
+    @members = get_members.where('name LIKE ? ', "%#{params[:search]}%")
+  end
   private
+
+  def get_members
+    Member.joins(:game_members).select('members.*, AVG(game_members.score) AS members_avg_score').group("members.id").having("count(game_members.id) >= ?",5).order('members_avg_score DESC').limit(10)
+  end
 
   def member_params
     params.require(:member).permit(:name, :email, :phone_number)

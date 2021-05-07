@@ -1,3 +1,7 @@
+= form_with url: search_members_path, local: false ,method: 'get' do |form|
+  .d-flex.mb-5
+    = form.text_field :search, placeholder: 'Search', class:'form-control'
+    = form.submit 'search', class: 'btn btn-success'
 %table.table
   %thead.thead-dark
     %tr
@@ -7,9 +11,8 @@
       %th Joining Date
       %th Average Score
       %th Action
-  %tbody
-    - @members.each do |member|
-      %tr
-        = render 'member', member: member
+  %tbody#product_listing
+    = render 'member_listing', members: @members
+.modal
 
-= link_to 'Add member', new_member_path, class: 'btn btn-warning'
+= link_to 'Add member', new_member_path, remote: true, class: 'btn btn-warning'
